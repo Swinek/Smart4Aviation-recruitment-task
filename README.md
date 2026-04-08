@@ -34,7 +34,7 @@ If you want to test the solution from scratch, run the helper script. It will au
 ```bash
 sudo ./run_task.sh
 ```
-2.If you already have the necessary test data in `/opt/logs/` you are free to run the script below and display the data on your own.
+2. If you already have the necessary test data in `/opt/logs/` you are free to run the script below and display the data on your own.
 ```bash
 sudo ./task.sh
 ```

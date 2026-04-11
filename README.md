@@ -14,7 +14,7 @@ The repository contains three scripts:
 * **`task.sh`** 
   The main script implementing the core logic.
   
-* **`run_task.sh`**
+* **`run.sh`**
   A helper script designed to simplify testing and presentation. It generates a test environment, displays the directory tree before execution, runs the main script, and then displays the modified directory tree. It also supports `--h` (help) and `--v` (version) flags.
   
 * **`prepare_data.sh`** 
@@ -32,9 +32,9 @@ The `tree` package must be installed on your system for the helper script to dis
 **1. Full test with environment generation (Recommended)**
 If you want to test the solution from scratch, run the helper script. It will automatically generate the necessary dummy files and directories, and then execute the task:
 ```bash
-sudo ./run_task.sh
+sudo ./run.sh
 ```
-2. If you already have the necessary test data in `/opt/logs/` you are free to run the script below and display the data on your own.
+**2.** If you already have the necessary test data in `/opt/logs/` you are free to run the script below and display the data on your own.
 ```bash
 sudo ./task.sh
 ```

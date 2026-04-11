@@ -1,5 +1,6 @@
 #!/bin/bash
 DIR="/opt/logs"
+DELETE_TIME=1
 
 cd $DIR
 
@@ -14,8 +15,8 @@ find -type f -name "*.log.*" ! -name "*.gz*"| while read file; do
     curr_dir=$(dirname "$file")
     curr_filename=$(basename "$file")
 
-    name="${curr_filename%.log.*}"
-    remaining_part="${curr_filename#*.log.}"
+        name="${curr_filename%%.log.*}"
+        remaining_part="${curr_filename#*.log.}"
     curr_filename="$name.$date.log.$remaining_part"
     
     mv "$file" "$curr_dir/$curr_filename"    
@@ -24,5 +25,5 @@ find -type f -name "*.log.*" ! -name "*.gz*"| while read file; do
 
 done
 
-find $DIR -type f -name "*.log.*" -name "*.gz*" -mmin +1 -delete
+find $DIR -type f -name "*.log.*" -name "*.gz*" -mmin +$DELETE_TIME -delete
 

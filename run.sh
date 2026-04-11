@@ -9,7 +9,7 @@ fi
 while (( 1 < 2 )); do
     case "$1" in
         --h)
-            echo "Usage: ./run_task.sh [OPTION]"
+            echo "Usage: ./run.sh [OPTION]"
             echo ""
             echo "This script prepares data and runs the task to rename and compress .log. files in /opt/logs. It also removes .log. files older than 10 days."
             echo ""

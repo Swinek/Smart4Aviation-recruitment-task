@@ -1,29 +1,31 @@
 #!/bin/bash
 DIR="/opt/logs"
-DELETE_TIME=1
-
-cd $DIR
+DELETE_CONDITION_REGEX="*.[0-9][0-9][0-9][0-9].[0-9][0-9].[0-9][0-9].log.*.gz" 
+DELETE_TIME=+10
 
 if [ "$EUID" -ne 0 ]; then
     echo "You need to run the script as a root user to get access to /opt/logs!"
-    exit 1
+    exit 1  
 fi
 
-find -type f -name "*.log.*" ! -name "*.gz*"| while read file; do
+find "$DIR" -type f -name "*.log.*" ! -name "*.gz"| while read -r file; do
     date=$(date -r "$file" +"%Y.%m.%d")
-    
     curr_dir=$(dirname "$file")
     curr_filename=$(basename "$file")
 
-        name="${curr_filename%%.log.*}"
-        remaining_part="${curr_filename#*.log.}"
-    curr_filename="$name.$date.log.$remaining_part"
+    name="${curr_filename%%.log.*}"
+    remaining_part="${curr_filename#*.log.}"
     
-    mv "$file" "$curr_dir/$curr_filename"    
+    new_filename="$name.$date.log.$remaining_part"
     
-    gzip "$curr_dir/$curr_filename"
+    mv "$file" "$curr_dir/$new_filename"    
+    
+    gzip "$curr_dir/$new_filename"
 
 done
 
-find $DIR -type f -name "*.log.*" -name "*.gz*" -mmin +$DELETE_TIME -delete
+find "$DIR" -type f -name "$DELETE_CONDITION_REGEX" -mtime "$DELETE_TIME" -delete
+    
+
+
 

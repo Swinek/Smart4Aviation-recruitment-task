@@ -5,7 +5,7 @@ The script operates on the `/opt/logs/` directory and its subdirectories to achi
 * Find files containing `.log.` in their names.
 * Rename the found files to the following format: `<name>.<date>.log.<remaining part of the original name>`.
 * Compress the processed files into `.gz` archives.
-* Delete compressed `.gz` archives that are older than 10 days.
+* Delete `<name>.<date>.log.<remaining part of the original name>.gz` archives that are older than 10 days.
 
 ## File Structure and Description
 
